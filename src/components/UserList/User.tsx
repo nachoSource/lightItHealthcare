@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
@@ -9,9 +9,13 @@ import styles from "./UserList.style";
 import { getFormattedDate } from "../../helpers/commons";
 
 const User = ({ dark = false, item, selectUser }: UserComponentProps) => {
-  const navigation = useNavigation();
   const { id, avatar, createdAt, description, name, website } = item;
-  const formattedDate = getFormattedDate(createdAt, false);
+  const navigation = useNavigation();
+  const [formattedDate, setFormattedDate] = useState<String>("");
+
+  useEffect(() => {
+    setFormattedDate(getFormattedDate(createdAt));
+  }, [createdAt]);
 
   const handlePress = () => {
     selectUser(item);
@@ -42,6 +46,6 @@ const User = ({ dark = false, item, selectUser }: UserComponentProps) => {
 export default connect(
   () => ({}),
   (dispatch) => ({
-    selectUser: (data: any) => dispatch(selectUser()),
+    selectUser: (data: any) => dispatch(selectUser(data)),
   })
 )(User);

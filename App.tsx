@@ -7,9 +7,7 @@ import { store } from "./index";
 
 const Stack = createNativeStackNavigator();
 
-// TODO write README
-// TODO add drawer for editing
-// TODO translate page
+// TODO avoid keyboard to overlap with the rest of the app in iOS
 
 const App = (): ReactElement => (
   <Provider store={store}>

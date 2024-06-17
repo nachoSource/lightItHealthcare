@@ -7,7 +7,7 @@ import {
   FlatList,
   View,
 } from "react-native";
-import { UserListProps } from "../../interfaces/components/commons";
+import { UserListProps } from "../../interfaces/components/users";
 import { colors, styles as globalStyles } from "../../styles/global.styles";
 import Text from "../Text";
 import User from "./User";

@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   title: {
+    color: colors.black,
     fontSize: 17,
     fontWeight: "600",
   },

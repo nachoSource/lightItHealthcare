@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../styles/global.styles";
 
 const styles = StyleSheet.create({
+  container: { width: "100%", display: "flex", maxHeight: "70%" },
   content: {
     display: "flex",
     flexDirection: "column",
@@ -14,6 +15,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  editButton: { paddingHorizontal: 10, paddingVertical: 5 },
+  editButtonText: { color: colors.black },
   header: {
     borderBottomColor: colors.primary,
     borderBottomWidth: 1,
@@ -27,7 +30,13 @@ const styles = StyleSheet.create({
   },
   img: { width: "100%", height: 200 },
   link: { marginTop: 15 },
-  longField: { flexDirection: "column", marginTop: 5, marginBottom: 10 },
+  longField: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    marginTop: 5,
+    marginBottom: 10,
+    width: "100%",
+  },
   userName: { marginTop: 5 },
 });
 

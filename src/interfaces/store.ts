@@ -7,7 +7,7 @@ interface IAction {
 
 interface UsersIState {
   currentUser: UserDescriptionProps | null;
-  data: UserDescriptionProps | [];
+  data: UserDescriptionProps[];
   pending: boolean;
   error: any;
 }

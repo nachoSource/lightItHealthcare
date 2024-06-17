@@ -2,7 +2,7 @@ import React from "react";
 import { SvgXml } from "react-native-svg";
 
 const xml = `<svg fill="#000000" id="Capa_1" 
-\t width="150px" height="150px" viewBox="0 0 45.532 45.532"
+\t width="70px" height="70px" viewBox="0 0 45.532 45.532"
 \t xml:space="preserve">
 <g>
 \t<path d="M22.766,0.001C10.194,0.001,0,10.193,0,22.766s10.193,22.765,22.766,22.765c12.574,0,22.766-10.192,22.766-22.765
@@ -13,6 +13,6 @@ const xml = `<svg fill="#000000" id="Capa_1"
 </g>
 </svg>`;
 
-const DefaultUser = () => <SvgXml xml={xml} />;
+const DefaultUser = ({ width = "100%" }) => <SvgXml xml={xml} width={width} />;
 
 export default DefaultUser;

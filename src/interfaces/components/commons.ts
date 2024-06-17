@@ -1,16 +1,30 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { NavigationProp } from "@react-navigation/core/src/types";
-import { StyleSheet } from "react-native";
-import { UserDescriptionProps } from "./users";
+import { StyleProp, StyleSheet } from "react-native";
 
 type BackButtonProps = PropsWithChildren<{
   navigation: NavigationProp<ReactNavigation.RootParamList>;
 }>;
 
-type UserListProps = PropsWithChildren<{
-  data: UserDescriptionProps[] | [];
-  error: boolean;
-  pending: boolean;
+type ButtonProps = PropsWithChildren<{
+  children: ReactNode;
+  style?: StyleProp<any>;
+  onClick: Function;
+}>;
+
+type BottomDrawerProps = PropsWithChildren<{
+  children: ReactNode;
+  show: Boolean;
+  setShow: Function;
+}>;
+
+type FieldProps = PropsWithChildren<{
+  style?: StyleProp<any>;
+  dark?: boolean;
+  label?: string;
+  numberOfLines?: number;
+  value: String | Number | Date | Boolean;
+  onChange?: Function;
 }>;
 
 type LinkProps = PropsWithChildren<{
@@ -31,10 +45,26 @@ type TouchableProps = PropsWithChildren<{
   onTouch?: Function;
 }>;
 
+type UserAvatarProps = PropsWithChildren<{
+  avatar: String;
+  imgHeight: String | Number;
+  imgWidth: String | Number;
+  style?: StyleSheet.NamedStyles<any>;
+}>;
+
+type UserFormProps = PropsWithChildren<{
+  defaultValues?: any;
+  onSubmit: Function;
+}>;
+
 export type {
   BackButtonProps,
-  UserListProps,
+  ButtonProps,
+  BottomDrawerProps,
+  FieldProps,
   LinkProps,
   TextProps,
   TouchableProps,
+  UserAvatarProps,
+  UserFormProps,
 };

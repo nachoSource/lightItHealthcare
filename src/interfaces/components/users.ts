@@ -1,5 +1,4 @@
 import { PropsWithChildren } from "react";
-import { StyleProp } from "react-native";
 
 type UserComponentProps = PropsWithChildren<{
   dark?: boolean;
@@ -14,14 +13,13 @@ type UserDescriptionProps = PropsWithChildren<{
   id: String;
   name: String;
   website: String;
+  openDrawer: Function;
 }>;
 
-type FieldProps = PropsWithChildren<{
-  containerStyle?: StyleProp<any>;
-  dark?: boolean;
-  label?: string;
-  numberOfLines?: number;
-  value: String | Number | Date | Boolean;
+type UserListProps = PropsWithChildren<{
+  data: UserDescriptionProps[] | [];
+  error: boolean;
+  pending: boolean;
 }>;
 
-export type { UserComponentProps, UserDescriptionProps, FieldProps };
+export type { UserComponentProps, UserDescriptionProps, UserListProps };

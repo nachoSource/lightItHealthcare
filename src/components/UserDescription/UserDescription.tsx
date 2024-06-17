@@ -1,10 +1,12 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
-import { Animated, ScrollView, View } from "react-native";
-import { DefaultUser } from "../../../assets";
-import { checkValidUrl, getFormattedDate } from "../../helpers/commons";
+import React, { ReactElement, useEffect, useState } from "react";
+import { ScrollView, View } from "react-native";
+import { getFormattedDate } from "../../helpers/commons";
 import { UserDescriptionProps } from "../../interfaces/components/users";
+import Button from "../Button";
 import Field from "../Field";
 import Link from "../Link";
+import Text from "../Text";
+import UserAvatar from "../UserAvatar";
 import styles from "./UserDescription.styles";
 
 const UserDescription = ({
@@ -13,44 +15,20 @@ const UserDescription = ({
   description,
   name,
   website,
+  openDrawer,
 }: UserDescriptionProps): ReactElement => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const [isAvatarValid, setIsAvatarValid] = useState<Boolean>(false);
-  const formattedDate = getFormattedDate(createdAt);
+  const [formattedDate, setFormattedDate] = useState<String>("null");
 
   useEffect(() => {
-    checkValidUrl(avatar).then((isValid) => setIsAvatarValid(isValid));
+    console.log("UserDescription ", createdAt);
+    setFormattedDate(getFormattedDate(createdAt));
   }, [createdAt]);
 
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      delay: 300,
-      toValue: 100,
-      duration: 3500,
-      useNativeDriver: true,
-    }).start();
-  }, [fadeAnim]);
-
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.header}>
-        {!!avatar && isAvatarValid && (
-          <Animated.Image
-            source={{ uri: avatar }}
-            style={{ ...styles.img, opacity: fadeAnim }}
-          />
-        )}
-        {(!avatar || !isAvatarValid) && (
-          <View style={styles.defaultUser}>
-            <DefaultUser />
-          </View>
-        )}
-        <Field
-          dark
-          numberOfLines={3}
-          value={name}
-          containerStyle={styles.userName}
-        />
+        <UserAvatar avatar={avatar} imgHeight={200} imgWidth="100%" />
+        <Field dark numberOfLines={3} value={name} style={styles.userName} />
       </View>
       <View style={styles.content}>
         <ScrollView>
@@ -59,13 +37,18 @@ const UserDescription = ({
             label="Descripción:"
             numberOfLines={5}
             value={description}
-            containerStyle={styles.longField}
+            style={styles.longField}
           />
           <Field dark label="Fecha de creación:" value={formattedDate} />
-          <Link label="Sitio:" url={website} style={styles.link} />
+          <Link label="Sitio" url={website} style={styles.link} />
         </ScrollView>
+        <Button onClick={openDrawer} style={styles.editButton}>
+          <Text style={styles.editButtonText}>
+            Editar información del paciente
+          </Text>
+        </Button>
       </View>
-    </>
+    </View>
   );
 };
 

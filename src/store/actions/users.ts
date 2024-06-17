@@ -1,5 +1,16 @@
-import { UserComponentProps } from "../../interfaces/components/users";
+import { UserDescriptionProps } from "../../interfaces/components/users";
 import * as types from "./types";
+
+// TODO review this typing
+export const createUser = (data: { data: UserDescriptionProps }) => ({
+  type: types.CREATE_USER,
+  payload: data,
+});
+
+export const updateUser = (data: { data: UserDescriptionProps }) => ({
+  type: types.UPDATE_USER,
+  payload: data,
+});
 
 export const selectUser = (data: any) => ({
   type: types.SELECT_USER,
@@ -11,7 +22,7 @@ export const fetchUsersRequest = (data: any) => ({
   payload: data,
 });
 
-export const fetchUsersSuccess = (data: any) => ({
+export const fetchUsersSuccess = (data: { data: UserDescriptionProps[] }) => ({
   type: types.FETCH_USERS_SUCCESS,
   payload: data,
 });
@@ -21,8 +32,4 @@ export const fetchUsersFailure = (e: any) => {
     type: types.FETCH_USERS_FAILURE,
     payload: e,
   };
-};
-
-export const editUser = (data: UserComponentProps) => {
-  return;
 };
